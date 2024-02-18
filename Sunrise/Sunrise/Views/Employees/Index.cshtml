@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Employee>
+
+<h1 class="alert alert-info text-center">
+    Employees
+</h1>
+
+<a asp-controller="Employees" asp-action="GetCreateView" class="btn btn-success mb-1">
+    Create New
+</a>
+
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(e=>e.Id)</th>
+                <th>@Html.DisplayNameFor(e=>e.FullName)</th>
+                <th>@Html.DisplayNameFor(e=>e.Position)</th>
+                <th>@Html.DisplayNameFor(e=>e.Salary)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Position</td>
+                    <td>@item.Salary</td>
+                    <td>
+                        <a asp-controller="Employees" asp-action="GetDetailsView"
+                           asp-route-id="@item.Id" class="btn btn-outline-success" title="Details"><i class="bi bi-list-ul"></i></a> 
+
+                        <a asp-controller="Employees" asp-action="GetEditView"
+                           asp-route-id="@item.Id" class="btn btn-outline-primary" title="Edit"><i class="bi bi-pencil-square"></i></a>
+
+                        <a asp-controller="Employees" asp-action="GetDeleteView"
+                           asp-route-id="@item.Id" class="btn btn-outline-danger" title="Delete"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr><th colspan="3" style="text-align:right">Total</th><td>@Model.Sum(e=>e.Salary)</td></tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <h1 class="alert alert-danger text-center">There is no data.</h1>
+}
+
+<br />
+<hr />
+<br />
+@*
+@{
+    double score = 35;
+}
+*@
+
+
+
+
+@*<ul class="list-group col-3">
+    <li class="list-group-item active"><h6>Employees</h6></li>
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item list-group-item-action">@item.FullName (@item.Position)</li>
+    }
+</ul>
+<br />
+<br />
+<hr />
+
+
+@if (score >= 50)
+{
+    <h1 class="col-3" style="background-color:beige;color:darkblue">Pass ناجح</h1>
+}
+else
+{
+    <h1 class="col-3" style="background-color:lightblue;color:red">Fail راسب</h1>
+}*@
+
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

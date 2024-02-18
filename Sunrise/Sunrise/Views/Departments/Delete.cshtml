@@ -1,0 +1,42 @@
+﻿@model Department
+
+<h1 class="alert alert-danger text-center">Are you sure you want to delete this?</h1>
+
+<dl class="row">
+    <dt class="col-2">@Html.DisplayNameFor(e=>e.Id)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>e.Id)</dd>
+    @*<dd class="col-10">@Model.Id</dd>*@
+
+    <dt class="col-2">@Html.DisplayNameFor(e=>e.Name)</dt>
+    <dd class="col-10">@Html.DisplayFor(e=>e.Name)</dd>
+    @*<dd class="col-10">@Model.Name</dd>*@
+
+    <dt class="col-2">@Html.DisplayNameFor(e => e.Description)</dt>
+    <dd class="col-10">@Html.DisplayFor(e => e.Description)</dd>
+    @*<dd class="col-10">@Model.Description</dd>*@
+
+</dl>
+
+<h3>Department Employees</h3>
+@if(Model.Employees.Count > 0)
+{
+    <ul>
+        @foreach (var item in Model.Employees)
+        {
+            <li>@item.FullName (@item.Position)</li>
+        }
+    </ul>
+}
+else
+{
+    <h1 class="alert alert-danger">There is no employee in this department.</h1>
+}
+
+
+<form method="post" asp-controller="Departments" asp-action="DeleteCurrent">
+    <input type="hidden" asp-for="Id"/>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+
+<a asp-controller="Departments" asp-action="GetIndexView">Back to List</a>
